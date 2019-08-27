@@ -7,8 +7,13 @@ import RandomPlanet from '../random-planet';
 import './app.css';
 import ErrorIndicator from "../error-indicator";
 import PeoplePage from "../people-page";
+import ItemList from "../item-list";
+import PersonDetails from "../person-details";
+import SwapiService from "../../services/swapi-service";
 
 export default class App extends Component {
+
+    swapiService = new SwapiService();
 
     state = {
         showRandomPlanet: true,
@@ -35,6 +40,7 @@ export default class App extends Component {
                 <Header />
                 <RandomPlanet />
                 <PeoplePage />
+
             </div>
         );
     }
