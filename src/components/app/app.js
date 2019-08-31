@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 
 import Header from '../header';
-import RandomPlanet from '../random-planet';
-
-
 import './app.css';
 import ErrorIndicator from "../error-indicator";
+import ItemDetails, { Record } from "../item-details";
+import SwapiService from "../../services/swapi-service";
+import Row from "../row";
+import ErrorBoundry from "../error-boundry";
+import RandomPlanet from "../random-planet";
 import PeoplePage from "../people-page";
 import ItemList from "../item-list";
-import PersonDetails from "../person-details";
-import SwapiService from "../../services/swapi-service";
+import {
+    PersonList,
+    PlanetList,
+    StarshipList,
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails
+} from '../sw-components';
 
 export default class App extends Component {
 
@@ -35,13 +43,32 @@ export default class App extends Component {
             return <ErrorIndicator/>;
         }
 
-        return (
-            <div className="container">
-                <Header />
-                <RandomPlanet />
-                <PeoplePage />
 
-            </div>
+        return (
+            <ErrorBoundry>
+                <div className="container">
+                    <Header />
+                    {/*<RandomPlanet />
+                    <PeoplePage />*/}
+
+                    <PersonDetails itemId={11} />
+                    <PlanetDetails itemId={5} />
+                    <StarshipDetails itemId={9} />
+
+
+
+
+                    <PersonList>
+                        { ({name}) => <span>{name}</span> }
+                    </PersonList>
+                    <StarshipList>
+                        { ({name}) => <span>{name}</span> }
+                    </StarshipList>
+                    <PlanetList>
+                        { ({name}) => <span>{name}</span> }
+                    </PlanetList>
+                </div>
+            </ErrorBoundry>
         );
     }
 }
