@@ -3,31 +3,19 @@ import React, { Component } from 'react';
 import Header from '../header';
 import './app.css';
 import ErrorIndicator from "../error-indicator";
-import ItemDetails, { Record } from "../item-details";
 import SwapiService from "../../services/swapi-service";
-import Row from "../row";
 import ErrorBoundry from "../error-boundry";
 import RandomPlanet from "../random-planet";
-import PeoplePage from "../people-page";
-import ItemList from "../item-list";
-
+import { PeoplePage, PlanetsPage, StarshipPage } from '../pages';
 import { SwapiServiceProvider } from "../swapi-service-context";
 
-import {
-    PersonList,
-    PlanetList,
-    StarshipList,
-    PersonDetails,
-    PlanetDetails,
-    StarshipDetails
-} from '../sw-components';
+
 
 export default class App extends Component {
 
     swapiService = new SwapiService();
 
     state = {
-        showRandomPlanet: true,
         hasError: false
     };
 
@@ -36,8 +24,6 @@ export default class App extends Component {
             hasError: true
         });
     }
-
-
 
     render() {
         const { hasError } = this.state;
@@ -52,17 +38,10 @@ export default class App extends Component {
                 <SwapiServiceProvider value={this.swapiService}>
                     <div className="container">
                         <Header />
-                        {/*<RandomPlanet />
-                        <PeoplePage />*/}
-
-                        <PersonDetails itemId={11} />
-                        <PlanetDetails itemId={5} />
-                        <StarshipDetails itemId={9} />
-
-                        <PersonList />
-                        <StarshipList />
-                        <PlanetList />
-
+                        <RandomPlanet />
+                        <PeoplePage />
+                        <PlanetsPage />
+                        <StarshipPage />
                     </div>
                 </SwapiServiceProvider>
             </ErrorBoundry>
